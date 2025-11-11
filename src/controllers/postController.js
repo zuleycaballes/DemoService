@@ -18,12 +18,12 @@ export const createPost = async (req, res) => {
 
 export const getAllPosts = async (req, res) => {
     try {
-        const getPostQuery = `
+        const getPostsQuery = `
             SELECT id, content, created_at
             FROM posts
             ORDER BY created_at DESC;
         `;
-        const result = await query (getPostQuery);
+        const result = await query (getPostsQuery);
         res.json(result.rows)
     } catch (error) {
         res.status(400).json({error: error.message})
