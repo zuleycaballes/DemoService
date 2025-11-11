@@ -1,5 +1,5 @@
 import pkg from 'pg';
-const {Pool} = pkg;
+const { Pool } = pkg;
 
 const pool = new Pool({
     connectionString: process.env.DATABASE_URL
@@ -10,18 +10,18 @@ export const query = (text, params) => {
 };
 
 const initializeDatabase = async() => {
-    try {
+    try{
         await query(`
-            CREATE TABLE IF NOT EXISTS posts (
-                id SERIAL PRIMARY KEY,
-                content TEXT NOT NULL,
-                created_at TIMESTAMPS DEFAULT CURRENT_TIMESTAMP,
-                updated_at TIMESTAMPS DEFAULT_CURRENT_TIMESTAMP
-            );
-            `);
-            console.log('database tables created or already exist.');
-    } catch (error) {
-        console.error('error initializing the database', error);
+        CREATE TABLE IF NOT EXISTS posts (
+            id SERIAL PRIMARY KEY,
+            content TEXT NOT NULL,
+            created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+            updated_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
+        );
+        `);
+        console.log('Database tables created or already exist.')
+    } catch(error) {
+        console.error('Error initializing the database', error);
     }
 }
 
